@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Outfit</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf='isLoaded'>
+		<!-- <ion-card>
+	        <img [src]='outfit.image'/>
+	    </ion-card>
+		<ion-item-group *ngFor='let item of outfit.items'>
+			<ion-item-divider color="light"><b (click)='loadItem(item.item_id)'>{{item.item_type}}</b></ion-item-divider>
+			<ion-item>Store: {{item.store}}</ion-item>
+			<ion-item>Price: {{item.price}}$</ion-item>
+		</ion-item-group> -->
+
+		<ion-card>
+
+		  <ion-item (click)="navigateToStylist();">
+		    <ion-avatar item-start>
+		      <img [src]='outfit.stylist.image'>
+		    </ion-avatar>
+		    <h2>{{outfit.stylist.username}}</h2>
+		    <p>Stylist</p>
+		  </ion-item>
+
+		  <img [src]='outfit.image'/>
+
+		  <ion-row>
+		    <ion-col>
+		      <button ion-button icon-left clear small [color]='(isOutfitLiked)? "" : "dark"' (click)='(isOutfitLiked)? dislikeOutfit() : likeOutfit()'>
+		        <ion-icon name="thumbs-up"></ion-icon>
+		        <div>Like</div>
+		      </button>
+		    </ion-col>
+		    <!-- <ion-col right text-right>
+		      <button ion-button icon-left clear small color="">
+		        <ion-icon name="text"></ion-icon>
+		        <div>4 Comments</div>
+		      </button>
+		    </ion-col> -->
+		  </ion-row>
+
+		</ion-card>
+		<ion-card-content>
+
+		<p>
+			<ion-item-group *ngFor='let item of outfit.items'>
+				<ion-item-divider (click)='loadItem(item.item_id)' color="light"><b>{{item.item_type}}</b></ion-item-divider>
+				<ion-item>Store: {{item.store}}</ion-item>
+				<ion-item>Price: {{item.price}} ILS</ion-item>
+			</ion-item-group>
+			<ion-item-group>
+				<ion-item-divider color="light"><b>Total cost</b></ion-item-divider>
+				<ion-item>{{totalCost}} ILS</ion-item>
+			</ion-item-group>
+		</p>
+		</ion-card-content>
+
+	</div>
+</ion-content>

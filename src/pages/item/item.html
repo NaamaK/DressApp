@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Item</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf='isLoaded'>
+		<ion-list>
+			<ion-list-header>
+		    	{{item.item_type}}
+		  	</ion-list-header>
+		  	<ion-item><img [src]='item.image'/></ion-item>
+		  	<ion-item>Store: {{item.store}}</ion-item>
+		  	<ion-item>Price: {{item.price}} ILS</ion-item>
+	    		<!-- <div>
+		    		<button class="alignLeft" *ngIf='!isItemInCloset' (click)='addItemToCloset();' ion-button color="light" icon-left>
+				      	<ion-icon name='add'></ion-icon>
+				     	Add To Closet
+			    	</button>
+			    	<button class="alignLeft" *ngIf='isItemInCloset' (click)='removeItemFromCloset();' ion-button color="light" icon-left>
+				      	<ion-icon name='remove'></ion-icon>
+				     	Remove Item From Closet
+			    	</button>
+		    	</div>
+	    		<button class="alignRight" (click)='findMatchingOutfits();' [disabled]='!hasMatchingOutfits' ion-button color="light" icon-left>
+			      	<ion-icon name='search'></ion-icon>
+			     	Find Matching Outfit
+		    	</button> -->
+		    	<ion-row>
+				    <ion-col>
+				      <button ion-button clear small color="dark" (click)='(isItemInCloset)? removeItemFromCloset() : addItemToCloset()'>
+				        <div><ion-icon [name]='(isItemInCloset)? "remove" : "add"'></ion-icon>
+				        <div>{{(isItemInCloset)? "Remove" : "Add"}}</div>
+				        <div>{{(isItemInCloset)? "From Closet" : "To Closet"}}</div></div>
+				      </button>
+				    </ion-col>
+				    <ion-col right text-right>
+				      <button ion-button clear small color="dark" (click)='findMatchingOutfits();'>
+				        <div><ion-icon name="search"></ion-icon>
+				        <div>Find Matching Outfit</div></div>
+				      </button>
+				    </ion-col>
+		  		</ion-row>
+		</ion-list>
+	</div>
+</ion-content>

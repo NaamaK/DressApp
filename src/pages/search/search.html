@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+    <ion-toolbar no-border-top>
+  <ion-segment [(ngModel)]="tab">
+    <ion-segment-button (click)="selectTab(0)" value="0">
+      Category
+    </ion-segment-button>
+    <ion-segment-button (click)="selectTab(1)" value="1">
+      Stylists
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
+  <ion-item *ngIf='tab=="0"' no-lines>
+  	<ion-label>Category</ion-label>
+    	<ion-select [(ngModel)]="category" (ionChange)='loadCategory();'>
+      	<ion-option value="{{category}}" *ngFor='let category of categories'>{{category}}</ion-option>
+    	</ion-select>
+  </ion-item>
+  <ion-toolbar primary class="searchToolbar" *ngIf='tab=="1"'>
+    <ion-searchbar class="searchBar" (ionInput)="getStylists($event)" ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+	<ion-header class="float">
+  	<ion-navbar>
+    	<ion-title>Search</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-slides #pageSlider (ionSlideWillChange)="changeWillSlide($event)">
+        <ion-slide>
+            <div [hidden]='isOutfitsLoaded' class="middle">
+              <ion-spinner></ion-spinner>
+            </div>
+            <div *ngIf='isOutfitsLoaded && tab=="0"'>
+              <ion-card *ngFor='let outfit of outfits' (click)='loadOutfit(outfit.id)'>
+                  <img [src]='outfit.img'/>
+                  <div class="card-title">{{outfit.category}}</div>
+              </ion-card>
+              <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+              </ion-infinite-scroll>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div *ngIf='isStylistsLoaded && tab=="1"'>
+              <ion-list>
+                  <button ion-item *ngFor="let stylist of stylists" (click)='navigateToStylist(stylist.id)'>
+                    <ion-avatar item-start>
+                      <img [src]='stylist.profile_image'>
+                    </ion-avatar>
+                    <h2>{{ stylist.username }}</h2>
+                  </button>
+              </ion-list>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

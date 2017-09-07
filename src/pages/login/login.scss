@@ -1,0 +1,54 @@
+page-login {
+
+    #login {
+      vertical-align: middle;
+
+      .header {
+        padding-top: 20px;
+        //padding-bottom: 20px;
+
+        img {
+          display: block;
+          width: 60%;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    ion-list {
+      padding-right: 20px;
+    }
+
+    .fancy {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      margin: 20px 0px;
+    }
+    .fancy span {
+      color: #848484;
+      vertical-align: baseline;
+      zoom: 1;
+      position: relative;
+      padding: 0 20px;
+    }
+    /*.fancy span {
+      display: inline-block;
+      text-transform: uppercase;
+    }*/
+    .fancy span:after, .fancy span:before {
+      content: '';
+      display: block;
+      width: 1000px;
+      position: absolute;
+      top: .73em;
+      border-top: 1px solid rgb(222, 222, 222);
+    }
+    .fancy span:before {
+      right: 100%;
+    }
+    .fancy span:after {
+      left: 100%;
+    }
+  
+}

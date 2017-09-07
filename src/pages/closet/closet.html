@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Closet</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-bottom>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button (click)="selectTab(0)" value="0">
+        My Closet
+      </ion-segment-button>
+      <ion-segment-button (click)="selectTab(1)" value="1">
+        Following
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-header class="float">
+  <ion-navbar>
+    <ion-buttons end>
+        <button (click)='openMenu();' ion-button icon-only>
+          <ion-icon name="more"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Closet</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-slides #pageSlider (ionSlideWillChange)="changeWillSlide($event)">
+    <ion-slide>
+      <div [hidden]='isItemsLoaded && !noItems' class="middle">
+        <ion-spinner></ion-spinner>
+      </div>
+      <div *ngIf='tab=="0"'>
+        <ion-grid>
+          <ion-row *ngIf='isItemsLoaded && !noItems'>
+            <ion-col col-6 *ngFor='let item of myItems'>
+              <ion-card (click)='loadItem(item.item_id)'>
+                <img [src]='item.image'/>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div *ngIf='tab=="1"'>
+        <ion-list>
+          <div *ngFor="let stylist of stylists">
+            <button ion-item (click)='navigateToStylist(stylist.id)'>
+              <ion-avatar item-start>
+                <img [src]='stylist.profile_image'>
+              </ion-avatar>
+              <h2>{{ stylist.username }}</h2>
+              <button item-end ion-button clear (click)='unfollow(stylist.id)'>
+              unfollow
+            </button>
+            </button>
+            
+          </div>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

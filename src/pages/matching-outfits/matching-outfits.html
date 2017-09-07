@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Matching Outfits</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="card-background-page">
+  <!-- <div *ngIf='isLoggedIn'> -->
+    <div [hidden]='isLoaded' class="middle">
+      <ion-spinner></ion-spinner>
+    </div>
+    <ion-card *ngFor='let outfit of outfits' (click)='loadOutfit(outfit.id)'>
+        <img [src]='outfit.img'/>
+        <div class="card-title">{{outfit.category}}</div>
+    </ion-card>
+  <!-- </div> -->
+</ion-content>

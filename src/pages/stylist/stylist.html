@@ -1,0 +1,45 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Stylist</ion-title>
+  	</ion-navbar>
+  	<ion-item no-lines>
+	    <ion-avatar item-start>
+	      <img *ngIf='isLoaded' [src]='stylist.profile_image'>
+	    </ion-avatar>
+	    <h2 *ngIf='isLoaded'>{{stylist.username}}</h2>
+    	<button item-end ion-button clear [color]='(isFollowed)? "" : "dark"' (click)='(isFollowed)? unfollow() : follow()'>
+    		Follow
+  		</button>
+  		<button (click)='showAlert(stylist.description, stylist.email);' item-end ion-button color="dark" clear icon-only>
+    		<ion-icon name="information-circle"></ion-icon>
+  		</button>
+	</ion-item>
+</ion-header>
+<ion-header class="float">
+  	<ion-navbar>
+	    <ion-buttons left>
+	        <button ion-button (click)="back()">
+	            <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+	        </button>
+	    </ion-buttons>
+	    <ion-title>Stylist</ion-title>
+	 </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf='isLoaded && !noOutfits'>
+	    <ion-grid>
+		  <ion-row>
+		    <ion-col col-6 *ngFor='let outfit of outfits'>
+		    	<ion-card (click)='loadOutfit(outfit.id)'>
+		    		<img [src]='outfit.img'/>
+		    	</ion-card>
+		    </ion-col>
+		  </ion-row>
+		</ion-grid>
+	</div>
+	<div *ngIf='isLoaded && noOutfits'>
+    	{{stylist.username}} has no outfits yet.
+  	</div>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar hideBackButton={{registerSucceed}}>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngIf='!registerSucceed'>
+		<ion-list>
+		  	<ion-item>
+		    	<ion-label floating>Email Address</ion-label>
+		    	<ion-input type="text" [(ngModel)]="email"></ion-input>
+		  	</ion-item>
+		  	<ion-item>
+		    	<ion-label floating>User Name</ion-label>
+		    	<ion-input type="text" [(ngModel)]="username"></ion-input>
+		  	</ion-item>
+		  	<ion-item>
+		    	<ion-label floating>Password</ion-label>
+		    	<ion-input type="password" [(ngModel)]="password"></ion-input>
+		  	</ion-item>
+		  	<ion-item>
+		    	<ion-label floating>Confirm Password</ion-label>
+		    	<ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+		  	</ion-item>
+		  	<ion-input [hidden]="true" ></ion-input>
+		</ion-list>
+		<div padding>
+			<button (click)='register();' ion-button color="primary" block>Submit</button>
+		</div>
+		<div *ngIf='hasError' padding>
+			<b>Error!</b> {{message}}
+		</div>
+	</div>
+	<div *ngIf='registerSucceed' class="middle">
+		<img src="http://dressapp.org/pics/emailVerification.png">
+
+		<h2>Email Verification was sent</h2>
+	    <button (click)='login();' ion-button large clear icon-end color="primary">
+	        Login 
+	    	<ion-icon name="arrow-forward"></ion-icon>
+	    </button>
+	</div>
+</ion-content>

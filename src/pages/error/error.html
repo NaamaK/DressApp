@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Error</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding id="error">
+	<div *ngIf='isLoaded' class="header padding text-center">
+		<div padding>
+			<h1>Oops, Something went wrong..</h1>
+			<br>
+	        <img src="http://www.abitidacerimoniafashion.it/img/14-404.png" />
+		</div>
+		<div padding>
+			<p>{{error}}</p>
+	    	<br><br>
+	        <h4>Go back to Homepage</h4>
+		</div>
+    </div>
+</ion-content>

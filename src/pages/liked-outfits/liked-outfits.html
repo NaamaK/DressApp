@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Liked Outfits</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="card-background-page">
+  <div [hidden]='isLoaded && !noOutfits' class="middle">
+    <ion-spinner></ion-spinner>
+  </div>
+	<div *ngIf='isLoaded && !noOutfits'>
+		<ion-card *ngFor='let outfit of outfits' (click)='loadOutfit(outfit.id)'>
+	      <img [src]='outfit.img'/>
+	      <div class="card-title">{{outfit.category}}</div>
+	    </ion-card>
+    </div>
+    <div *ngIf='isLoaded && noOutfits' class="middle">
+      <img src="http://dressapp.org/pics/heart.png">
+
+      <h4>You didn't liked any outfit yet</h4>
+      <button (click)='search();' ion-button large clear icon-end color="primary">
+        Search Outfits
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+  	</div>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Feed</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [hidden]='isLoaded && !noOutfits' class="middle">
+    <ion-spinner></ion-spinner>
+  </div>
+	<div *ngIf='isLoaded && !noOutfits'>
+		<ion-card *ngFor='let outfit of outfits' (click)='loadOutfit(outfit.id)'>
+        <img [src]='outfit.img'/>
+        <div class="card-title">{{outfit.category}}</div>
+    </ion-card>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div *ngIf='isLoaded && noOutfits' class="middle">
+    
+      <img src="http://dressapp.org/pics/searchHome.png">
+
+      <h4>You are not following any stylists</h4>
+      <button (click)='search();' ion-button large clear icon-end color="primary">
+          Search Outfits
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+  </div>
+    
+</ion-content>

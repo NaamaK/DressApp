@@ -1,0 +1,93 @@
+<!-- <ion-header>
+  <ion-navbar hideBackButton={{!isLoggedIn}}>
+  //<ion-navbar hideBackButton *navbar>//
+    <ion-title>
+    	DressApp
+    </ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+
+<ion-content id="login"	overflow-scroll=true>
+	<div padding *ngIf='!isLoggedIn'>
+		<div class="header padding text-center">
+            <img src="img/logo.png" alt="Your logo here"/>
+        </div>
+        <ion-list>
+		  <ion-item>
+		    <ion-label floating>Email Address</ion-label>
+		    <ion-input type="text" [(ngModel)]="email"></ion-input>
+		  </ion-item>
+
+		  <ion-item>
+		    <ion-label floating>Password</ion-label>
+		    <ion-input type="password" [(ngModel)]="password"></ion-input>
+		  </ion-item>
+
+		  <ion-input [hidden]="true" ></ion-input>
+
+		</ion-list>
+		<div padding>
+			<button (click)='login();' ion-button color="primary" [outline]='!email || !password' [disabled]='!email || !password' block>Sign In</button>
+			<div *ngIf='hasErrorLogin' padding>
+				<b>Error!</b> {{loginError}}
+			</div>
+			<p class="fancy"><span>OR</span></p>
+			<button (click)='doFbLogin();' ion-button item-end icon-left block>
+				<ion-icon name="logo-facebook"></ion-icon>
+				Contiune with Facebook
+			</button>
+			<!-- <button ion-button icon-left>
+  <ion-icon name="facebook"></ion-icon>
+  Left Icon
+</button> -->
+		</div>
+		
+		<!-- <div padding>
+			<p class="fancy"><span>OR</span></p>
+		</div> -->
+		<!-- <div padding>
+			<button (click)='mockLogin();' ion-button color="primary" block>Mock Login</button>
+		</div> -->
+		<!-- <div padding>
+			<button (click)='register();' ion-button color="primary" block>Register</button>
+		</div> -->
+	</div>
+	<!-- <ion-col class="login-button">
+      <button ion-button block (click)="doFbLogin()">CONTINUE WITH FACEBOOK</button>
+    </ion-col> -->
+	
+		<!-- Don't have an account yet?
+		<button ion-button full color="light">Full Button</button> -->
+	
+	<!-- <div *ngIf='isLoggedIn'>
+		<button (click)='logout();' ion-button color="primary" block>Sign Out</button>
+	</div> -->
+	<!-- <button (click)='throwException("Page not found");' ion-button color="primary" block>Error Page</button> -->
+	<!-- <button (click)='tutorial();' ion-button color="primary" block>Tutorial</button> -->
+</ion-content>
+
+<ion-footer>
+
+	<button ion-button (click)='register();' clear block>
+		Don't have an account? Sign up	
+	</button>
+	
+  <!-- <ion-toolbar> -->
+  <!-- <ion-segment>
+  <ion-segment-button large clear (click)='register();'>
+      Register
+    </ion-segment-button>
+    <ion-segment-button large clear (click)='doFbLogin()'>
+      Contiune with Facebook
+    </ion-segment-button>
+  </ion-segment> -->
+    <!-- <p>CONTINUE WITH FACEBOOK</p>
+    <ion-buttons end>
+      <button ion-button icon-right color="royal" (click)="doFbLogin()">
+        Send
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  <!-- </ion-toolbar> -->
+</ion-footer>
